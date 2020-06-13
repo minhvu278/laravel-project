@@ -28,6 +28,14 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">Đăng nhập</p>
 
+            <?php
+            $message = Session::get('message');
+            if ($message){
+                echo '<span style="text-align: center; color: red" class="text alert">' . $message . '</span>';
+                Session::put('message', null);
+            }
+            ?>
+
             <form action="{{URL::to('/admin-dashboard')}}" method="post">
                 {{csrf_field()}}
                 <div class="input-group mb-3">

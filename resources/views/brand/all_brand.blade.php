@@ -36,9 +36,22 @@
                                         <td>{{$brand->desc}}</td>
                                         <td>
                                             @if($brand->status == 1)
-                                                <a href="{{URL::to('/inactive-brand/'.$brand->id)}}"><span style="color:red;font-size:28px" class="fa fa-thumbs-down"></span></a>
+                                                <input
+                                                    toggle-display="{{$brand->id}}"
+                                                    type="checkbox"
+                                                    name="my-checkbox"
+                                                    checked
+                                                    data-bootstrap-switch
+                                                    data-off-color="danger"
+                                                    data-on-color="success">
                                             @else
-                                                <a href="{{URL::to('/active-brand/'.$brand->id)}}"><span style="color:green;font-size:28px" class="fa fa-thumbs-up"></span></a>
+                                                <input
+                                                    toggle-display="{{$brand->id}}"
+                                                    type="checkbox"
+                                                    name="my-checkbox"
+                                                    data-bootstrap-switch
+                                                    data-off-color="danger"
+                                                    data-on-color="success">
                                             @endif
                                         </td>
                                         <td>
@@ -61,4 +74,23 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+@endsection
+
+@section('footer_script')
+    <script src="{{asset('backend/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
+    <script>
+        $("input[data-bootstrap-switch]").each(function () {
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        });
+
+        $('input[toggle-display]').on('switchChange.bootstrapSwitch', function (event, state) {
+            let id = $(this).attr('toggle-display');
+
+            if (state === true) {
+                window.location.href='/active-brand/' + id
+            } else {
+                window.location.href='/inactive-brand/' + id
+            }
+        })
+    </script>
 @endsection

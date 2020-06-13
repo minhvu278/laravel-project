@@ -11,6 +11,7 @@
         $errorName = '';
         $errorPrice = '';
         $errorDesc = '';
+        $errorImage = '';
 
         if (isset($err)) {
             if (isset($err['name']) && count($err['name']) > 0) {
@@ -21,6 +22,9 @@
             }
             if (isset($err['desc']) && count($err['desc']) > 0) {
                 $errorDesc = $err['desc'][0];
+            }
+            if (isset($err['image']) && count($err['image']) > 0) {
+                $errorImage = $err['image'][0];
             }
         }
 
@@ -46,24 +50,30 @@
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Tên sản phẩm</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="name" id="inputEmail3" placeholder="Tên sản phẩm">
+                        <p style="color: red">{{$errorName}}</p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Giá sản phẩm</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="price" id="inputEmail3" placeholder="Giá sản phẩm">
+                        <input type="text" class="form-control" name="price" id="inputEmail3"
+                               placeholder="Giá sản phẩm">
+                        <p style="color: red">{{$errorPrice}}</p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
                     <div class="col-sm-10">
-                        <textarea type="text" rows="8" class="form-control" name="desc" id="ckeditor" placeholder="Mo ta sản phẩm"></textarea>
+                        <textarea type="text" rows="8" class="form-control" name="desc" id="ckeditor"
+                                  placeholder="Mo ta sản phẩm"></textarea>
+                        <p style="color: red">{{$errorDesc}}</p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Ảnh sản phẩm</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" name="image" id="inputPassword3" >
+                        <input type="file" class="form-control" name="image" id="inputPassword3">
+                        <p style="color: red">{{$errorImage}}</p>
                     </div>
                 </div>
             </div>
@@ -72,7 +82,7 @@
                 <div class="col-sm-10">
                     <select name="product_cate" class="form-control">
                         @foreach($cate_product as $cate)
-                        <option value="{{($cate->id)}}">{{($cate->name)}}</option>
+                            <option value="{{($cate->id)}}">{{($cate->name)}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -83,7 +93,7 @@
                 <div class="col-sm-10">
                     <select name="product_brand" class="form-control">
                         @foreach($brand_product as $brand)
-                        <option value="{{($brand->id)}}">{{($brand->name)}}</option>
+                            <option value="{{($brand->id)}}">{{($brand->name)}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -106,4 +116,11 @@
             <!-- /.card-footer -->
         </form>
     </div>
+@endsection
+
+@section('footer_script')
+    <script src="{{asset('backend/ckeditor/ckeditor.js')}}"></script>
+    <script>
+        CKEDITOR.replace('ckeditor');
+    </script>
 @endsection

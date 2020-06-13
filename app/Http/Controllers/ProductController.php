@@ -63,10 +63,19 @@ class ProductController extends Controller
 
         $validator = Validator::make($data, $rule, $msgE);
         if ($validator->fails()){
+            $cate_product = DB::table('category')
+                ->orderBy('id', 'desc')
+                ->get();
+            $brand_product = DB::table('brand')
+                ->orderBy('id', 'desc')
+                ->get();
+
             $manager_product = view('product.add_product')
                 ->with('product', $data)
-                ->with('err', $validator->errors()->messages());
-            return view('admin_layout')
+                ->with('err', $validator->errors()->messages())
+                ->with('cate_product', $cate_product)
+                ->with('brand_product', $brand_product);
+                return view('admin_layout')
                 ->with('product.add_product', $manager_product);
         }
 
@@ -88,14 +97,18 @@ class ProductController extends Controller
     }
 
     public function active($id){
-        DB::table('product')->where('id', $id)->update(['status' => 1]);
-        Session::put('message', 'Khong kich hoat san pham');
+        DB::table('product')
+            ->where('id', $id)
+            ->update(['status' => 1]);
+        Session::put('message', 'Kích hoạt sản phẩm thành công');
         return Redirect::to('/all-product');
     }
 
     public function inactive($id){
-        DB::table('product')->where('id', $id)->update(['status' => 0]);
-        Session::put('message', 'Kich hoat san pham thanh cong');
+        DB::table('product')
+            ->where('id', $id)
+            ->update(['status' => 0]);
+        Session::put('message', 'Không kích hoạt sản phẩm');
         return Redirect::to('/all-product');
     }
 
@@ -112,7 +125,8 @@ class ProductController extends Controller
             ->with('edit_product', $edit_product)
             ->with('cate_product', $cate_product)
             ->with('brand_product', $brand_product);
-        return view('admin_layout')->with('product.edit_product', $manager_product);
+        return view('admin_layout')
+            ->with('product.edit_product', $manager_product);
     }
 
     public function updateProduct(Request $request, $id){
@@ -126,22 +140,25 @@ class ProductController extends Controller
 
 
         $get_image = $request->file('image');
+//        dd($get_image);
         if ($get_image){
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.', $get_name_image));
             $new_image = $name_image.rand(0, 99). '.'. $get_image->getClientOriginalExtension();
             $get_image->move('uploads/product', $new_image);
             $data['image'] = $new_image;
-            DB::table('product')->where('id', $id)->update($data);
-            Session::put('message', 'Cap nhat thanh cong');
-            return Redirect::to('/all-product');
         }
-        DB::table('product')->where('id', $id)->update($data);
+
+        DB::table('product')
+            ->where('id', $id)
+            ->update($data);
         Session::put('message', 'Sửa san pham thanh cong');
         return Redirect::to('/all-product');
     }
     public function deleteProduct($id){
-        DB::table('product')->where('id', $id)->delete();
+        DB::table('product')
+            ->where('id', $id)
+            ->delete();
         Session::put('message', 'Xóa san pham thanh cong');
         return Redirect::to('/all-product');
     }

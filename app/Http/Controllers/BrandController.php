@@ -17,8 +17,10 @@ class BrandController extends Controller
     public function allBrand(){
 
         $all_brand = DB::table('brand')->get();
-        $manager_brand = view('brand.all_brand')->with('all_brand', $all_brand);
-        return view('admin_layout')->with('brand.all_brand', $manager_brand);
+        $manager_brand = view('brand.all_brand')
+            ->with('all_brand', $all_brand);
+        return view('admin_layout')
+            ->with('brand.all_brand', $manager_brand);
     }
 
     public function saveBrand(Request $request){
@@ -52,21 +54,29 @@ class BrandController extends Controller
     }
 
     public function active($id){
-        DB::table('brand')->where('id', $id)->update(['status' => 1]);
-        Session::put('message', 'Khong kich hoat danh muc san pham');
+        DB::table('brand')
+            ->where('id', $id)
+            ->update(['status' => 1]);
+        Session::put('message', 'Kích hoạt thương hiệu sản phẩm thành công');
         return Redirect::to('/all-brand');
     }
 
     public function inactive($id){
-        DB::table('brand')->where('id', $id)->update(['status' => 0]);
-        Session::put('message', 'Kich hoat danh muc san pham thanh cong');
+        DB::table('brand')
+            ->where('id', $id)
+            ->update(['status' => 0]);
+        Session::put('message', 'Không kích hoạt thương hiệu sản phẩm');
         return Redirect::to('/all-brand');
     }
 
     public function editBrand($id){
-        $edit_brand = DB::table('brand')->where('id', $id)->get();
-        $manager_brand = view('brand.edit_brand')->with('edit_brand', $edit_brand);
-        return view('admin_layout')->with('brand.edit_brand', $manager_brand);
+        $edit_brand = DB::table('brand')
+            ->where('id', $id)
+            ->get();
+        $manager_brand = view('brand.edit_brand')
+            ->with('edit_brand', $edit_brand);
+        return view('admin_layout')
+            ->with('brand.edit_brand', $manager_brand);
     }
 
     public function updateBrand(Request $request, $id){

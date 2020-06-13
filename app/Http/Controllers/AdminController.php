@@ -10,6 +10,8 @@ session_start();
 
 class AdminController extends Controller
 {
+
+
     public function index(){
         return view('admin_login');
     }
@@ -20,12 +22,25 @@ class AdminController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        $result = DB::table('admin')->where('email', $email)->where('password', $password)->first();
-        return view('admin.dashboard');
+        $result = DB::table('admin')
+            ->where('email', $email)
+            ->where('password', $password)
+            ->first();
+        if ($result){
+            Session::put('name', $result->name);
+            Session::put('id', $result->id);
+            return Redirect::to('/dashboard');
+        }else{
+            Session::put('message', 'MK hoặc tài khoản sai, vui lòng nhập lại');
+            return Redirect::to('/admin');
+        }
+
     }
 
     public function logout(){
-
+        Session::put('name', null);
+        Session::put('id', null);
+        return Redirect::to('/admin');
     }
 
 }

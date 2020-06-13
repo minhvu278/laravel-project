@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+Route::get('/trang-chu', 'HomeController@index');
 
 Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard', 'AdminController@showDashboard');
@@ -51,3 +50,8 @@ Route::post('/save-product', 'ProductController@saveProduct');
 Route::post('/update-product/{id}', 'ProductController@updateProduct');
 Route::get('/active-product/{id}', 'ProductController@active');
 Route::get('/inactive-product/{id}', 'ProductController@inactive');
+
+//Customer
+Route::get('/all-customer', 'CustomerController@allCustomer');
+Route::get('/active-customer/{id}', 'CustomerController@active');
+Route::get('/inactive-customer/{id}', 'CustomerController@inactive');
