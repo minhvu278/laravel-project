@@ -14,6 +14,6 @@ class HomeController extends Controller
         $brand_product = DB::table('brand')
             ->orderBy('id', 'desc')
             ->get();
-        return view('pages.home');
+        return view('pages.home')->with('category', $cate_product)->with('brand', $brand_product);
     }
 }

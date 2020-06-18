@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 Route::get('/trang-chu', 'HomeController@index');
+
+//Danh mục sản phẩm trang chủ
+Route::get('/danh-muc-san-pham/{id}', 'CategoryController@showCateHome');
+Route::get('/thuong-hieu-san-pham/{id}', 'BrandController@showBrandHome');
+Route::get('/chi-tiet-san-pham/{id}', 'ProductController@showDetails');
 
 Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard', 'AdminController@showDashboard');
@@ -55,3 +61,12 @@ Route::get('/inactive-product/{id}', 'ProductController@inactive');
 Route::get('/all-customer', 'CustomerController@allCustomer');
 Route::get('/active-customer/{id}', 'CustomerController@active');
 Route::get('/inactive-customer/{id}', 'CustomerController@inactive');
+
+Route::get('conv', function (){
+   $users = App\User::all();
+   foreach ($users as $user){
+       $a = App\User::find($user->id);
+       $a->password = bcrypt('1234');
+       $a->save();
+   }
+});

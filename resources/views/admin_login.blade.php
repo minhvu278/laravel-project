@@ -34,6 +34,11 @@
                 echo '<span style="text-align: center; color: red" class="text alert">' . $message . '</span>';
                 Session::put('message', null);
             }
+            $arr = Session::get('arr');
+            if ($arr){
+                echo '<span style="text-align: center; color: red" class="text alert">' . $arr . '</span>';
+                Session::put('arr', null);
+            }
             ?>
 
             <form action="{{URL::to('/admin-dashboard')}}" method="post">

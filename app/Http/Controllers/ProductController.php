@@ -48,7 +48,7 @@ class ProductController extends Controller
         $data['status'] = $request->status;
 
         $rule = [
-            'name' => 'required',
+            'name' => 'required|regex:/^[0-9a-zA-Z]{5,30}$/',
             'price' => 'required',
             'desc' => 'required',
             'image' => 'required',
@@ -56,6 +56,7 @@ class ProductController extends Controller
 
         $msgE = [
             'name.required' => 'Vui lòng nhập vào tên sản phẩm',
+            'name.regex'=>'Tên sản phẩm chỉ nhập chữ cái hoặc số từ 5 đến 30 ký tự',
             'price.required' => 'Vui lòng nhập vào giá sản phẩm',
             'desc.required' => 'Vui lòng nhập vào mô tả sản phẩm',
             'image.required' => 'Vui lòng chọn ảnh sản phẩm',
@@ -161,5 +162,28 @@ class ProductController extends Controller
             ->delete();
         Session::put('message', 'Xóa san pham thanh cong');
         return Redirect::to('/all-product');
+    }
+
+    //End function admin page
+
+    public function showDetails($id){
+        $cate_product = DB::table('category')
+            ->where('status' ,1)
+            ->orderBy('id', 'desc')
+            ->get();
+        $brand_product = DB::table('brand')
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+        $details_product = DB::table('product')
+            ->join('category', 'category.id', '=' , 'product.category_id')
+            ->join('brand', 'brand.id', '=' , 'product.brand_id')
+            ->select(["product.*", "brand.name as brand_name", "category.name as category_name"])
+            ->where('product.id', $id)
+            ->get();
+        return view('pages.product.show_details')
+            ->with('category', $cate_product)
+            ->with('brand', $brand_product)
+            ->with('details_product', $details_product);
     }
 }

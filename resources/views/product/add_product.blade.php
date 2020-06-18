@@ -31,6 +31,7 @@
         $name = '';
         $price = '';
         $desc = '';
+        $image = '';
         if (isset($product)) {
             if (isset($product['name'])) {
                 $name = $product['name'];
@@ -41,6 +42,9 @@
             if (isset($product['desc'])) {
                 $desc = $product['desc'];
             }
+            if (isset($product['image'])) {
+                $image = $product['image'];
+            }
         }
         ?>
         <form class="form-horizontal" action="{{URL::to('/save-product')}}" method="post" enctype="multipart/form-data">
@@ -49,14 +53,21 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Tên sản phẩm</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" id="inputEmail3" placeholder="Tên sản phẩm">
+                        <input type="text"
+                               class="form-control"
+                               name="name"
+                               value="{{$name}}"
+                               placeholder="Tên sản phẩm">
                         <p style="color: red">{{$errorName}}</p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Giá sản phẩm</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="price" id="inputEmail3"
+                        <input type="text"
+                               class="form-control"
+                               name="price"
+                               value="{{$price}}"
                                placeholder="Giá sản phẩm">
                         <p style="color: red">{{$errorPrice}}</p>
                     </div>
@@ -64,15 +75,25 @@
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
                     <div class="col-sm-10">
-                        <textarea type="text" rows="8" class="form-control" name="desc" id="ckeditor"
-                                  placeholder="Mo ta sản phẩm"></textarea>
+                        <textarea type="text"
+                                  rows="8"
+                                  class="form-control"
+                                  name="desc"
+                                  id="ckeditor"
+                                  placeholder="Mo ta sản phẩm">
+                            {{$desc}}
+                        </textarea>
                         <p style="color: red">{{$errorDesc}}</p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Ảnh sản phẩm</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" name="image" id="inputPassword3">
+                        <input type="file"
+                               class="form-control"
+                               name="image"
+                               value="{{$image}}"
+                               id="inputPassword3">
                         <p style="color: red">{{$errorImage}}</p>
                     </div>
                 </div>

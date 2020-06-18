@@ -93,4 +93,30 @@ class BrandController extends Controller
         Session::put('message', 'Xóa danh muc san pham thanh cong');
         return Redirect::to('/all-brand');
     }
+
+    //End function admin page
+
+    public function showBrandHome($id){
+        $cate_product = DB::table('category')
+            ->where('status' ,1)
+            ->orderBy('id', 'desc')
+            ->get();
+        $brand_product = DB::table('brand')
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+        $brand_by_id = DB::table('product')
+            ->join('brand', 'product.brand_id', '=', 'brand.id')
+            ->where('product.brand_id', $id)
+            ->get();
+        $brand_name = DB::table('brand')
+            ->where('brand.id', $id)
+            ->limit(1)
+            ->get();
+        return view('pages.brand.show_brand')
+            ->with('category', $cate_product)
+            ->with('brand', $brand_product)
+            ->with('brand_by_id', $brand_by_id)
+            ->with('brand_name', $brand_name);
+    }
 }

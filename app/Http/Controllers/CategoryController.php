@@ -100,4 +100,30 @@ class CategoryController extends Controller
         Session::put('message', 'Xóa danh muc san pham thanh cong');
         return Redirect::to('/all-category');
     }
+
+    //End function admin page
+
+    public function showCateHome($id){
+        $cate_product = DB::table('category')
+            ->where('status' ,1)
+            ->orderBy('id', 'desc')
+            ->get();
+        $brand_product = DB::table('brand')
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+        $category_by_id = DB::table('product')
+            ->join('category', 'product.category_id', '=', 'category.id')
+            ->where('product.category_id', $id)
+            ->get();
+        $category_name = DB::table('category')
+            ->where('category.id', $id)
+            ->limit(1)
+            ->get();
+        return view('pages.category.show_category')
+            ->with('category', $cate_product)
+            ->with('brand', $brand_product)
+            ->with('category_by_id', $category_by_id)
+            ->with('category_name', $category_name);
+    }
 }
