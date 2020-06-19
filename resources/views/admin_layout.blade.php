@@ -78,8 +78,8 @@
                         <img src="{{asset('backend/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
 
                         <p>
-                            Minh Vu - Web Developer
-                            <small>Member since Nov. 2012</small>
+                            {{Auth::user()->name}}
+                            <small>Admin</small>
                         </p>
                     </li>
                     <!-- Menu Body -->

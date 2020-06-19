@@ -114,6 +114,7 @@ class CategoryController extends Controller
             ->get();
         $category_by_id = DB::table('product')
             ->join('category', 'product.category_id', '=', 'category.id')
+            ->select(["product.*", "category.name as category_name"])
             ->where('product.category_id', $id)
             ->get();
         $category_name = DB::table('category')

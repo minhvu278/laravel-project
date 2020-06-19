@@ -62,11 +62,6 @@ Route::get('/all-customer', 'CustomerController@allCustomer');
 Route::get('/active-customer/{id}', 'CustomerController@active');
 Route::get('/inactive-customer/{id}', 'CustomerController@inactive');
 
-Route::get('conv', function (){
-   $users = App\User::all();
-   foreach ($users as $user){
-       $a = App\User::find($user->id);
-       $a->password = bcrypt('1234');
-       $a->save();
-   }
-});
+
+//Cart
+Route::post('/save-cart', 'CartController@saveCart');
