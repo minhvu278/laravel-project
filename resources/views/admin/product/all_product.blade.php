@@ -37,7 +37,7 @@
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->price}}</td>
                                         <td><img src="uploads/product/{{$product->image}}" width="100" height="100" alt=""></td>
-                                        <td>{{$product->desc}}</td>
+                                        <td>{!! $product->desc !!}</td>
                                         <td>
                                             @if($product->status == 1)
                                                 <input

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Home | E-Shopper</title>
     <link href="{{asset('frontend/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/font-awesome.min.css')}}" rel="stylesheet">
@@ -13,6 +14,7 @@
     <link href="{{asset('frontend/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('frontend/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/sweetalert.css')}}" rel="stylesheet">
 <!--[if lt IE 9]>
     <script src="{{asset('frontend/js/html5shiv.js')}}"></script>
     <script src="{{asset('frontend/js/respond.min.js')}}"></script>
@@ -93,7 +95,7 @@
                             <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="{{URL::to('/cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
                         </ul>
                     </div>
@@ -153,44 +155,23 @@
 
                     <div class="carousel-inner">
                         <div class="item active">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>Free E-Commerce Template</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="{{asset('frontend/images/home/girl1.jpg')}}" class="girl img-responsive"
+                            <div class="col-sm-11">
+                                <img src="{{asset('frontend/images/home/banner1.jpg')}}" class="girl img-responsive"
                                      alt=""/>
                                 <img src="{{asset('frontend/images/home/pricing.png')}}" class="pricing" alt=""/>
                             </div>
                         </div>
                         <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>100% Responsive Design</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="{{asset('frontend/images/home/girl2.jpg')}}" class="girl img-responsive"
+                            <div class="col-sm-11">
+                                <img src="{{asset('frontend/images/home/banner2.jpg')}}" class="girl img-responsive"
                                      alt=""/>
                                 <img src="{{asset('frontend/images/home/pricing.png')}}" class="pricing" alt=""/>
                             </div>
                         </div>
 
                         <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>Free Ecommerce Template</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="{{asset('frontend/images/home/girl3.jpg')}}" class="girl img-responsive"
+                            <div class="col-sm-11">
+                                <img src="{{asset('frontend/images/home/banner3.jpg')}}" class="girl img-responsive"
                                      alt=""/>
                                 <img src="{{asset('frontend/images/home/pricing.png')}}" class="pricing" alt=""/>
                             </div>
@@ -428,5 +409,51 @@
 <script src="{{asset('frontend/js/price-range.js')}}"></script>
 <script src="{{asset('frontend/js/jquery.prettyPhoto.js')}}"></script>
 <script src="{{asset('frontend/js/main.js')}}"></script>
+<script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
+<script>
+    $(document).ready(function () {
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
+
+        $('.add-to-cart').click(function () {
+            var id = $(this).data('id');
+            var cart_product_id = $('.cart_product_id_' + id).val();
+            var cart_product_name = $('.cart_product_name_' + id).val();
+            var cart_product_image = $('.cart_product_image_' + id).val();
+            var cart_product_price = $('.cart_product_price_' + id).val();
+            var cart_product_qty = $('.cart_product_qty_' + id).val();
+
+            $.ajax({
+                url: '{{url('/api/add-cart-ajax')}}',
+                method: 'post',
+                data: {
+                    cart_product_id: cart_product_id,
+                    cart_product_name: cart_product_name,
+                    cart_product_image: cart_product_image,
+                    cart_product_price: cart_product_price,
+                    cart_product_qty: cart_product_qty,
+                },
+                success: function (data) {
+                    swal({
+                            title: "Đã thêm sản phẩm vào giỏ hàng",
+                            text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                            type: "success",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "Đi tới giỏ hàng",
+                            closeOnConfirm: false
+                        },
+                        function(){
+                            window.location.href = "{{url('/cart')}}";
+                        });
+
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>

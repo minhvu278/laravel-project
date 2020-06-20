@@ -65,3 +65,9 @@ Route::get('/inactive-customer/{id}', 'CustomerController@inactive');
 
 //Cart
 Route::post('/save-cart', 'CartController@saveCart');
+Route::post('/api/add-cart-ajax', 'CartController@addCartAjax');
+Route::get('/cart', 'CartController@cart');
+Route::post('/update-cart', 'CartController@updateCart');
+Route::get('/delete-cart/{session_id}', 'CartController@deleteCart');
+
+

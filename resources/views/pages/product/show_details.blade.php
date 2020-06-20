@@ -11,17 +11,6 @@
                 <div id="similar-product" class="carousel slide" data-ride="carousel">
 
                     <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <a href=""><img src="{{URL::to('frontend/images/product-details/similar1.jpg')}}"
-                                            alt=""></a>
-                            <a href=""><img src="{{URL::to('frontend/images/product-details/similar2.jpg')}}"
-                                            alt=""></a>
-                            <a href=""><img src="{{URL::to('frontend/images/product-details/similar3.jpg')}}"
-                                            alt=""></a>
-                        </div>
-                    </div>
-
                     <!-- Controls -->
                     <a class="left item-control" href="#similar-product" data-slide="prev">
                         <i class="fa fa-angle-left"></i>
@@ -34,11 +23,18 @@
             </div>
             <div class="col-sm-7">
                 <div class="product-information"><!--/product-information-->
-                    <img src="images/product-details/new.jpg" class="newarrival" alt=""/>
+                    <input type="hidden" value="{{$product->id}}"
+                           class="cart_product_id_{{$product->id}}">
+                    <input type="hidden" value="{{$product->name}}"
+                           class="cart_product_name_{{$product->id}}">
+                    <input type="hidden" value="{{$product->image}}"
+                           class="cart_product_image_{{$product->id}}">
+                    <input type="hidden" value="{{$product->price}}"
+                           class="cart_product_price_{{$product->id}}">
+                    <input type="hidden" value="1"
+                           class="cart_product_qty_{{$product->id}}">
                     <h2>{{$product->name}}</h2>
                     <p>Mã ID: {{$product->id}}</p>
-                    <img src="images/product-details/rating.png" alt=""/>
-                    <form action="{{URL::to('/save-cart')}}" method="post">
                     <span>
 									<span>{{number_format($product->price). 'VND'}}</span>
 									<label>Quantity:</label>
@@ -49,17 +45,15 @@
                                     <input type="hidden"
                                            name="product_hidden"
                                            value="{{$product->id}}"/>
-									<button type="submit" class="btn btn-fefault cart">
+									<button type="submit" class="btn btn-fefault cart add-to-cart" data-id="{{$product->id}}" name="add_to_cart">
 										<i class="fa fa-shopping-cart"></i>
 										Thêm giỏ hàng
 									</button>
 								</span>
-                    </form>
                     <p><b>Tình trạng:</b> Còn hàng </p>
                     <p><b>Điều kiện:</b> New</p>
                     <p><b>Thương hiệu:</b> {{$product->brand_name}}</p>
                     <p><b>Danh mục:</b> {{$product->category_name}}</p>
-                    <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt=""/></a>
                 </div><!--/product-information-->
             </div>
         </div><!--/product-details-->

@@ -17,7 +17,7 @@ class ProductController extends Controller
         $brand_product = DB::table('brand')
             ->orderBy('id', 'desc')
             ->get();
-        return view('product.add_product')
+        return view('admin.product.add_product')
             ->with('cate_product', $cate_product)
             ->with('brand_product', $brand_product);
     }
@@ -31,10 +31,10 @@ class ProductController extends Controller
             ->orderBy('product.id', 'desc')
             ->get();
 
-        $manager_product = view('product.all_product')
+        $manager_product = view('admin.product.all_product')
             ->with('all_product', $all_product);
         return view('admin_layout')
-            ->with('product.all_product', $manager_product);
+            ->with('admin.product.all_product', $manager_product);
     }
 
     public function saveProduct(Request $request){
@@ -48,7 +48,7 @@ class ProductController extends Controller
         $data['status'] = $request->status;
 
         $rule = [
-            'name' => 'required|regex:/^[0-9a-zA-Z]{5,30}$/',
+            'name' => 'required',
             'price' => 'required',
             'desc' => 'required',
             'image' => 'required',
@@ -56,7 +56,6 @@ class ProductController extends Controller
 
         $msgE = [
             'name.required' => 'Vui lòng nhập vào tên sản phẩm',
-            'name.regex'=>'Tên sản phẩm chỉ nhập chữ cái hoặc số từ 5 đến 30 ký tự',
             'price.required' => 'Vui lòng nhập vào giá sản phẩm',
             'desc.required' => 'Vui lòng nhập vào mô tả sản phẩm',
             'image.required' => 'Vui lòng chọn ảnh sản phẩm',
@@ -71,13 +70,13 @@ class ProductController extends Controller
                 ->orderBy('id', 'desc')
                 ->get();
 
-            $manager_product = view('product.add_product')
+            $manager_product = view('admin.product.add_product')
                 ->with('product', $data)
                 ->with('err', $validator->errors()->messages())
                 ->with('cate_product', $cate_product)
                 ->with('brand_product', $brand_product);
                 return view('admin_layout')
-                ->with('product.add_product', $manager_product);
+                ->with('admin.product.add_product', $manager_product);
         }
 
         $get_image = $request->file('image');
@@ -122,12 +121,12 @@ class ProductController extends Controller
             ->get();
         $edit_product = DB::table('product')
             ->where('id', $id)->get();
-        $manager_product = view('product.edit_product')
+        $manager_product = view('admin.product.edit_product')
             ->with('edit_product', $edit_product)
             ->with('cate_product', $cate_product)
             ->with('brand_product', $brand_product);
         return view('admin_layout')
-            ->with('product.edit_product', $manager_product);
+            ->with('admin.product.edit_product', $manager_product);
     }
 
     public function updateProduct(Request $request, $id){

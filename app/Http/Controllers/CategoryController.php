@@ -12,15 +12,15 @@ class CategoryController extends Controller
 {
     public function addCategory()
     {
-        return view('category.add_category');
+        return view('admin.category.add_category');
     }
 
     public function allCategory()
     {
 
         $all_cate = DB::table('category')->get();
-        $manager_cate = view('category.all_category')->with('all_cate', $all_cate);
-        return view('admin_layout')->with('category.all_category', $manager_cate);
+        $manager_cate = view('admin.category.all_category')->with('all_cate', $all_cate);
+        return view('admin_layout')->with('admin.category.all_category', $manager_cate);
     }
 
     public function saveCategory(Request $request)
@@ -42,11 +42,11 @@ class CategoryController extends Controller
 
         $validator = Validator::make($data, $rule, $msgE);
         if ($validator->fails()) {
-            $manager_category = view('category.add_category')
+            $manager_category = view('admin.category.add_category')
                 ->with('category', $data)
                 ->with('err', $validator->errors()->messages());
                 return view('admin_layout')
-                ->with('category.add_category', $manager_category);
+                ->with('admin.category.add_category', $manager_category);
         }
 
         DB::table('category')->insert($data);
@@ -77,10 +77,10 @@ class CategoryController extends Controller
         $edit_category = DB::table('category')
             ->where('id', $id)
             ->get();
-        $manager_cate = view('category.edit_category')
+        $manager_cate = view('admin.category.edit_category')
             ->with('edit_category', $edit_category);
         return view('admin_layout')
-            ->with('category.edit_category', $manager_cate);
+            ->with('admin.category.edit_category', $manager_cate);
     }
 
     public function updateCategory(Request $request, $id)

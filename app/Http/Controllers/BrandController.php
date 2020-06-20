@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\Validator;
 class BrandController extends Controller
 {
     public function addBrand(){
-        return view('brand.add_brand');
+        return view('admin.brand.add_brand');
     }
 
     public function allBrand(){
 
         $all_brand = DB::table('brand')->get();
-        $manager_brand = view('brand.all_brand')
+        $manager_brand = view('admin.brand.all_brand')
             ->with('all_brand', $all_brand);
         return view('admin_layout')
-            ->with('brand.all_brand', $manager_brand);
+            ->with('admin.brand.all_brand', $manager_brand);
     }
 
     public function saveBrand(Request $request){
@@ -45,7 +45,7 @@ class BrandController extends Controller
                 ->with('brand', $data)
                 ->with('err', $validator->errors()->messages());
             return view('admin_layout')
-                ->with('brand.add_brand', $manager_brand);
+                ->with('admin.brand.add_brand', $manager_brand);
         }
 
         DB::table('brand')->insert($data);
@@ -73,10 +73,10 @@ class BrandController extends Controller
         $edit_brand = DB::table('brand')
             ->where('id', $id)
             ->get();
-        $manager_brand = view('brand.edit_brand')
+        $manager_brand = view('admin.brand.edit_brand')
             ->with('edit_brand', $edit_brand);
         return view('admin_layout')
-            ->with('brand.edit_brand', $manager_brand);
+            ->with('admin.brand.edit_brand', $manager_brand);
     }
 
     public function updateBrand(Request $request, $id){
