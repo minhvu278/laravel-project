@@ -88,12 +88,8 @@
                     <div class="total_area">
                         <ul>
                             <li>Tổng tiền <span>{{number_format($total,0,',','.').'đ'}}</span></li>
-                            <li>Thuế <span>$2</span></li>
-                            <li>Phí vận chuyển<span>Free</span></li>
-                            <li>Total <span>$61</span></li>
                         </ul>
-                        <a class="btn btn-default update" href="">Thanh toán</a>
-                        <a class="btn btn-default check_out" href="">Check Out</a>
+                        <a class="btn btn-default update" href="{{url('/login-checkout')}}">Thanh toán</a>
                     </div>
                 </div>
             </div>

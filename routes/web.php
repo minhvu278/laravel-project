@@ -61,6 +61,8 @@ Route::get('/inactive-product/{id}', 'ProductController@inactive');
 Route::get('/all-customer', 'CustomerController@allCustomer');
 Route::get('/active-customer/{id}', 'CustomerController@active');
 Route::get('/inactive-customer/{id}', 'CustomerController@inactive');
+Route::get('/update-customer/{id}', 'CustomerController@updateCustomer');
+Route::get('/edit-customer/{id}', 'CustomerController@editCustomer');
 
 
 //Cart
@@ -70,4 +72,16 @@ Route::get('/cart', 'CartController@cart');
 Route::post('/update-cart', 'CartController@updateCart');
 Route::get('/delete-cart/{session_id}', 'CartController@deleteCart');
 
+//Checkout
+Route::get('/login-checkout', 'CheckoutController@loginCheckout');
+Route::post('/add-customer', 'CheckoutController@addCustomer');
+Route::get('/checkout', 'CheckoutController@checkout');
+Route::get('/login-customer', 'CheckoutController@loginCustomer');
+Route::post('/save-checkout-customer', 'CheckoutController@saveCheckoutCustomer');
+
+//Mail
+Route::post('/mail', 'AdminController@sendMail');
+
+//Derivery
+Route::get('/derivery', 'DeriveryController@derivery');
 

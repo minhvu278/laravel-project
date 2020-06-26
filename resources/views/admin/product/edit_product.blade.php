@@ -32,7 +32,7 @@
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Ảnh sản phẩm</label>
                     <div class="col-sm-3">
                         <input type="file" class="form-control" name="image" >
-                        <img src="{{URL::to('uploads/product/'.$pro->image)}}" alt="">
+                        <img width="100px" src="{{URL::to('uploads/product/'.$pro->image)}}" alt="">
                     </div>
                 </div>
             </div>

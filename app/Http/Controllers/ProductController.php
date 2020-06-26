@@ -23,7 +23,6 @@ class ProductController extends Controller
     }
 
     public function allProduct(){
-
         $all_product = DB::table('product')
             ->join('category', 'category.id', '=' , 'product.category_id')
             ->join('brand', 'brand.id', '=' , 'product.brand_id')
@@ -48,17 +47,20 @@ class ProductController extends Controller
         $data['status'] = $request->status;
 
         $rule = [
-            'name' => 'required',
+            'name' => 'required|min:5',
             'price' => 'required',
             'desc' => 'required',
-            'image' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
         ];
 
         $msgE = [
             'name.required' => 'Vui lòng nhập vào tên sản phẩm',
+            'name.min' => 'Vui lòng nhập vào ít nhất 5 ký tự',
             'price.required' => 'Vui lòng nhập vào giá sản phẩm',
             'desc.required' => 'Vui lòng nhập vào mô tả sản phẩm',
             'image.required' => 'Vui lòng chọn ảnh sản phẩm',
+            'image.mimes' => 'Vui lòng chọn đúng đuôi',
+            'image.max' => 'Chỉ được tối đa 10MB',
         ];
 
         $validator = Validator::make($data, $rule, $msgE);
@@ -133,10 +135,46 @@ class ProductController extends Controller
         $data = array();
         $data['name'] = $request->name;
         $data['price'] = $request->price;
+        $data['image'] = $request->image;
         $data['desc'] = $request->desc;
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
         $data['status'] = $request->status;
+
+        $rule = [
+            'name' => 'required|min:5',
+            'price' => 'required',
+            'desc' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+        ];
+
+        $msgE = [
+            'name.required' => 'Vui lòng nhập vào tên sản phẩm',
+            'name.min' => 'Vui lòng nhập vào ít nhất 5 ký tự',
+            'price.required' => 'Vui lòng nhập vào giá sản phẩm',
+            'desc.required' => 'Vui lòng nhập vào mô tả sản phẩm',
+            'image.required' => 'Vui lòng chọn ảnh sản phẩm',
+            'image.mimes' => 'Vui lòng chọn đúng đuôi',
+            'image.max' => 'Chỉ được tối đa 10MB',
+        ];
+
+        $validator = Validator::make($data, $rule, $msgE);
+        if ($validator->fails()){
+            $cate_product = DB::table('category')
+                ->orderBy('id', 'desc')
+                ->get();
+            $brand_product = DB::table('brand')
+                ->orderBy('id', 'desc')
+                ->get();
+
+            $manager_product = view('admin.product.edit_product')
+                ->with('product', $data)
+                ->with('err', $validator->errors()->messages())
+                ->with('cate_product', $cate_product)
+                ->with('brand_product', $brand_product);
+            return view('admin_layout')
+                ->with('admin.product.edit_product', $manager_product);
+        }
 
 
         $get_image = $request->file('image');

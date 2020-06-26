@@ -31,12 +31,13 @@ class CategoryController extends Controller
         $data['status'] = $request->status;
 
         $rule = [
-            'name' => 'required',
+            'name' => 'required|min:5',
             'desc' => 'required'
         ];
 
         $msgE = [
             'name.required' => 'Vui lòng nhập vào tên danh mục',
+            'name.min' => 'Vui lòng nhập vào ít nhất 5 ký tự',
             'desc.required' => 'Vui lòng nhập vào mô tả danh mục',
         ];
 
@@ -45,7 +46,7 @@ class CategoryController extends Controller
             $manager_category = view('admin.category.add_category')
                 ->with('category', $data)
                 ->with('err', $validator->errors()->messages());
-                return view('admin_layout')
+            return view('admin_layout')
                 ->with('admin.category.add_category', $manager_category);
         }
 
@@ -89,6 +90,24 @@ class CategoryController extends Controller
         $data['name'] = $request->name;
         $data['desc'] = $request->desc;
         $data['status'] = $request->status;
+        $rule = [
+            'name' => 'required',
+            'desc' => 'required'
+        ];
+
+        $msgE = [
+            'name.required' => 'Vui lòng nhập vào tên danh mục',
+            'desc.required' => 'Vui lòng nhập vào mô tả danh mục',
+        ];
+
+        $validator = Validator::make($data, $rule, $msgE);
+        if ($validator->fails()) {
+            $manager_category = view('admin.category.add_category')
+                ->with('category', $data)
+                ->with('err', $validator->errors()->messages());
+            return view('admin_layout')
+                ->with('admin.category.add_category', $manager_category);
+        }
         DB::table('category')->where('id', $id)->update($data);
         Session::put('message', 'Sửa danh muc san pham thanh cong');
         return Redirect::to('/all-category');
@@ -103,9 +122,10 @@ class CategoryController extends Controller
 
     //End function admin page
 
-    public function showCateHome($id){
+    public function showCateHome($id)
+    {
         $cate_product = DB::table('category')
-            ->where('status' ,1)
+            ->where('status', 1)
             ->orderBy('id', 'desc')
             ->get();
         $brand_product = DB::table('brand')
