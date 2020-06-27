@@ -8,9 +8,7 @@
                     <li class="active">Giỏ hàng của bạn</li>
                 </ol>
             </div><!--/breadcrums-->
-            <div class="register-req">
-                <p>Vui lòng đăng nhập và đăng ký để thanh toán giỏ hàng và xem lại lịch sử mua hàng</p>
-            </div><!--/register-req-->
+            <!--/register-req-->
 
             <div class="shopper-informations">
                 <div class="row">

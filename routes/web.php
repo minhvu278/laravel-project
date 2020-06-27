@@ -64,7 +64,6 @@ Route::get('/inactive-customer/{id}', 'CustomerController@inactive');
 Route::get('/update-customer/{id}', 'CustomerController@updateCustomer');
 Route::get('/edit-customer/{id}', 'CustomerController@editCustomer');
 
-
 //Cart
 Route::post('/save-cart', 'CartController@saveCart');
 Route::post('/api/add-cart-ajax', 'CartController@addCartAjax');
@@ -74,6 +73,7 @@ Route::get('/delete-cart/{session_id}', 'CartController@deleteCart');
 
 //Checkout
 Route::get('/login-checkout', 'CheckoutController@loginCheckout');
+Route::get('/logout-checkout', 'CheckoutController@logoutCheckout');
 Route::post('/add-customer', 'CheckoutController@addCustomer');
 Route::get('/checkout', 'CheckoutController@checkout');
 Route::get('/login-customer', 'CheckoutController@loginCustomer');
@@ -82,6 +82,6 @@ Route::post('/save-checkout-customer', 'CheckoutController@saveCheckoutCustomer'
 //Mail
 Route::post('/mail', 'AdminController@sendMail');
 
-//Derivery
-Route::get('/derivery', 'DeriveryController@derivery');
+////Derivery
+//Route::get('/derivery', 'DeriveryController@derivery');
 

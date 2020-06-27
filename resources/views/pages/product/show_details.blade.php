@@ -1,6 +1,5 @@
 @extends('layout')
 @section('content')
-
     @foreach($details_product as $product)
         <div class="product-details"><!--product-details-->
             <div class="col-sm-5">
@@ -19,7 +18,6 @@
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </div>
-
             </div>
             <div class="col-sm-7">
                 <div class="product-information"><!--/product-information-->
@@ -115,13 +113,11 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div><!--/category-tab-->
     @endforeach
     <div class="recommended_items"><!--recommended_items-->
         <h2 class="title text-center">Sản phẩm gợi ý</h2>
-
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="item active">

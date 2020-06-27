@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use App\Customer;
+
 class CheckoutController extends Controller
 {
-    public function loginCheckout(){
+    public function loginCheckout()
+    {
         $cate_product = DB::table('category')
             ->orderBy('id', 'desc')
             ->get();
@@ -22,7 +24,14 @@ class CheckoutController extends Controller
             ->with('brand', $brand_product);
     }
 
-    public function addCustomer(Request $request){
+    public function logoutCheckout()
+    {
+        Session::flush();
+        return Redirect::to('/login-checkout');
+    }
+
+    public function addCustomer(Request $request)
+    {
         $data = array();
         $data['name'] = $request->name;
         $data['username'] = $request->username;
@@ -38,7 +47,8 @@ class CheckoutController extends Controller
         return Redirect::to('/checkout');
     }
 
-    public function checkout(){
+    public function checkout()
+    {
         $cate_product = DB::table('category')
             ->orderBy('id', 'desc')
             ->get();
@@ -50,7 +60,8 @@ class CheckoutController extends Controller
             ->with('brand', $brand_product);
     }
 
-    public function loginCustomer(Request $request){
+    public function loginCustomer(Request $request)
+    {
         $username = $request->username_account;
         $password = $request->password_account;
 
@@ -58,18 +69,19 @@ class CheckoutController extends Controller
             ->where('username', $username)
             ->where('password', $password)
             ->first();
-        if ($result){
+        if ($result) {
             Session::put('name', $result->name);
             Session::put('id', $result->id);
             return Redirect::to('/checkout');
-        }else{
+        } else {
             Session::put('message', 'Đăng nhập thành công');
             Session::put('error', 'MK hoặc tài khoản sai, vui lòng nhập lại');
             return Redirect::to('/login-checkout');
         }
     }
 
-    public function saveCheckoutCustomer(Request $request){
+    public function saveCheckoutCustomer(Request $request)
+    {
         $data = array();
         $data['name'] = $request->name;
         $data['email'] = $request->email;

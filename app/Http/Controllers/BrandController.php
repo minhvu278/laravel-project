@@ -62,7 +62,7 @@ class BrandController extends Controller
         DB::table('brand')
             ->where('id', $id)
             ->update(['status' => 1]);
-        Session::put('message', 'Kích hoạt thương hiệu sản phẩm thành công');
+        Session::put('message', 'Hiển thị thương hiệu sản phẩm');
         return Redirect::to('/all-brand');
     }
 
@@ -71,7 +71,7 @@ class BrandController extends Controller
         DB::table('brand')
             ->where('id', $id)
             ->update(['status' => 0]);
-        Session::put('message', 'Không kích hoạt thương hiệu sản phẩm');
+        Session::put('message', 'Ẩn thương hiệu sản phẩm');
         return Redirect::to('/all-brand');
     }
 
@@ -93,32 +93,42 @@ class BrandController extends Controller
         $data['name'] = $request->name;
         $data['desc'] = $request->desc;
         $data['status'] = $request->status;
+
         $rule = [
-            'name' => 'required',
+            'name' => 'required|min:5',
             'desc' => 'required'
         ];
 
         $msgE = [
             'name.required' => 'Vui lòng nhập vào tên thương hiệu',
+            'name.min' => 'Vui lòng nhập vào ít nhất 5 ký tự',
             'desc.required' => 'Vui lòng nhập vào mô tả thương hiệu',
         ];
 
         $validator = Validator::make($data, $rule, $msgE);
         if ($validator->fails()) {
-            $manager_brand = view('admin.brand.add_brand')
+            $edit_brand = DB::table('brand')
+                ->where('id', $id)
+                ->get();
+            $manager_brand = view('admin.brand.edit_brand')
                 ->with('brand', $data)
+                ->with('edit_brand', $edit_brand)
                 ->with('err', $validator->errors()->messages());
             return view('admin_layout')
-                ->with('admin.brand.add_brand', $manager_brand);
+                ->with('admin.brand.edit_brand', $manager_brand);
         }
-        DB::table('brand')->where('id', $id)->update($data);
+        DB::table('brand')
+            ->where('id', $id)
+            ->update($data);
         Session::put('message', 'Sửa thương hiệu sản phẩm thành công');
         return Redirect::to('/all-brand');
     }
 
     public function deleteBrand($id)
     {
-        DB::table('brand')->where('id', $id)->delete();
+        DB::table('brand')
+            ->where('id', $id)
+            ->delete();
         Session::put('message', 'Xóa thương hiệu sản phẩm thành công');
         return Redirect::to('/all-brand');
     }
@@ -127,7 +137,7 @@ class BrandController extends Controller
 
     public function showBrandHome($id)
     {
-        $cate_product = DB::table('category')
+        $cate_product = DB::table('brand')
             ->where('status', 1)
             ->orderBy('id', 'desc')
             ->get();

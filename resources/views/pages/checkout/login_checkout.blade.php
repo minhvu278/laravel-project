@@ -1,6 +1,9 @@
 @extends('layout')
 @section('content')
     <section id="form"><!--form-->
+        <div class="register-req">
+            <p>Vui lòng đăng nhập và đăng ký để thanh toán giỏ hàng và xem lại lịch sử mua hàng</p>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-1">

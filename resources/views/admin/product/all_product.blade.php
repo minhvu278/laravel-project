@@ -63,9 +63,13 @@
                                             <button type="button" class="btn btn-danger"><a onclick="return confirm('Bạn có muốn xóa?')" href="{{URL::to('/delete-product', $product->id)}}">Xóa</a></button>
                                         </td>
                                     </tr>
+
                                 @endforeach
                                 </tbody>
                             </table>
+                            <div class="card-footer clearfix">
+                                {!! $all_product->links() !!}
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>

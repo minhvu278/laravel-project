@@ -60,7 +60,7 @@ class CategoryController extends Controller
         DB::table('category')
             ->where('id', $id)
             ->update(['status' => 1]);
-        Session::put('message', 'Kích hoạt danh mục sản phẩm thành công');
+        Session::put('message', 'Hiển thị danh mục sản phẩm');
         return Redirect::to('/all-category');
     }
 
@@ -69,7 +69,7 @@ class CategoryController extends Controller
         DB::table('category')
             ->where('id', $id)
             ->update(['status' => 0]);
-        Session::put('message', 'Không kích hoạt danh mục sản phẩm');
+        Session::put('message', 'Ẩn danh mục sản phẩm');
         return Redirect::to('/all-category');
     }
 
@@ -90,23 +90,29 @@ class CategoryController extends Controller
         $data['name'] = $request->name;
         $data['desc'] = $request->desc;
         $data['status'] = $request->status;
+
         $rule = [
-            'name' => 'required',
+            'name' => 'required|min:5',
             'desc' => 'required'
         ];
 
         $msgE = [
             'name.required' => 'Vui lòng nhập vào tên danh mục',
+            'name.min' => 'Vui lòng nhập vào ít nhất 5 ký tự',
             'desc.required' => 'Vui lòng nhập vào mô tả danh mục',
         ];
 
         $validator = Validator::make($data, $rule, $msgE);
         if ($validator->fails()) {
-            $manager_category = view('admin.category.add_category')
+            $edit_category = DB::table('category')
+                ->where('id', $id)
+                ->get();
+            $manager_category = view('admin.category.edit_category')
                 ->with('category', $data)
+                ->with('edit_category', $edit_category)
                 ->with('err', $validator->errors()->messages());
             return view('admin_layout')
-                ->with('admin.category.add_category', $manager_category);
+                ->with('admin.category.edit_category', $manager_category);
         }
         DB::table('category')->where('id', $id)->update($data);
         Session::put('message', 'Sửa danh muc san pham thanh cong');

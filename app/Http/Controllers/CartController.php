@@ -33,7 +33,7 @@ class CartController extends Controller
             foreach ($cart as &$val) {
                 if ($val['id'] == $data['cart_product_id']) {
                     $val['qty']++;
-                    $is_avaliable++;
+//                    $is_avaliable++;
 
                 }
             }

@@ -6,6 +6,27 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
+        <?php
+        $errorName = '';
+        $errorPrice = '';
+        $errorDesc = '';
+        $errorImage = '';
+
+        if (isset($err)) {
+            if (isset($err['name']) && count($err['name']) > 0) {
+                $errorName = $err['name'][0];
+            }
+            if (isset($err['price']) && count($err['price']) > 0) {
+                $errorPrice = $err['price'][0];
+            }
+            if (isset($err['desc']) && count($err['desc']) > 0) {
+                $errorDesc = $err['desc'][0];
+            }
+            if (isset($err['image']) && count($err['image']) > 0) {
+                $errorImage = $err['image'][0];
+            }
+        }
+        ?>
         @foreach($edit_product as $pro)
         <form class="form-horizontal" action="{{URL::to('/update-product/'.$pro->id)}}" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
@@ -14,25 +35,29 @@
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Tên sản phẩm</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="name"  value="{{($pro->name)}}">
+                        <p style="color: red">{{$errorName}}</p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Giá sản phẩm</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" name="price" value="{{($pro->price)}}">
+                        <p style="color: red">{{$errorPrice}}</p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
                     <div class="col-sm-10">
                         <textarea type="text" rows="8" class="form-control" name="desc" id="ckeditor">{{($pro->desc)}}</textarea>
+                        <p style="color: red">{{$errorDesc}}</p>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Ảnh sản phẩm</label>
                     <div class="col-sm-3">
-                        <input type="file" class="form-control" name="image" >
+                        <input type="file" class="form-control" name="image" accept="image/*">
                         <img width="100px" src="{{URL::to('uploads/product/'.$pro->image)}}" alt="">
+                        <p style="color: red">{{$errorImage}}</p>
                     </div>
                 </div>
             </div>
