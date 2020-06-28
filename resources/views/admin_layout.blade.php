@@ -106,7 +106,7 @@
                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                         </div>
                         <div class="pull-right">
-                            <a href="{{URL::to('/logout')}}" class="btn btn-default btn-flat">Sign out</a>
+                            <a href="{{url('/logout')}}" class="btn btn-default btn-flat">Sign out</a>
                         </div>
                     </li>
                 </ul>
@@ -152,13 +152,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{URL::to('/add-category')}}" class="nav-link">
+                            <a href="{{url('/add-category')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Thêm danh mục</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{URL::to('/all-category')}}" class="nav-link">
+                            <a href="{{url('/all-category')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Liệt kê danh mục</p>
                             </a>
@@ -182,13 +182,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{URL::to('/add-brand')}}" class="nav-link">
+                            <a href="{{url('/add-brand')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Thêm thương hiệu</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{URL::to('/all-brand')}}" class="nav-link">
+                            <a href="{{url('/all-brand')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Liệt kê thương hiệu</p>
                             </a>
@@ -212,13 +212,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{URL::to('/add-product')}}" class="nav-link">
+                            <a href="{{url('/add-product')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Thêm sản phẩm</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{URL::to('/all-product')}}" class="nav-link">
+                            <a href="{{url('/all-product')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Liệt kê sản phẩm</p>
                             </a>
@@ -242,7 +242,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{URL::to('/all-customer')}}" class="nav-link">
+                            <a href="{{url('/all-customer')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách thành viên</p>
                             </a>
@@ -250,24 +250,24 @@
 
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Vận chuyển
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{URL::to('/delivery')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Quản lý vận chuyển</p>
-                            </a>
-                        </li>
+{{--                <li class="nav-item has-treeview">--}}
+{{--                    <a href="#" class="nav-link">--}}
+{{--                        <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+{{--                        <p>--}}
+{{--                            Vận chuyển--}}
+{{--                            <i class="right fas fa-angle-left"></i>--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                    <ul class="nav nav-treeview">--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{url('/delivery')}}" class="nav-link">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Quản lý vận chuyển</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
-                    </ul>
-                </li>
+{{--                    </ul>--}}
+{{--                </li>--}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

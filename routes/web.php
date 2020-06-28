@@ -61,8 +61,9 @@ Route::get('/inactive-product/{id}', 'ProductController@inactive');
 Route::get('/all-customer', 'CustomerController@allCustomer');
 Route::get('/active-customer/{id}', 'CustomerController@active');
 Route::get('/inactive-customer/{id}', 'CustomerController@inactive');
-Route::get('/update-customer/{id}', 'CustomerController@updateCustomer');
+Route::post('/update-customer/{id}', 'CustomerController@updateCustomer');
 Route::get('/edit-customer/{id}', 'CustomerController@editCustomer');
+Route::get('/delete-customer/{id}', 'CustomerController@deleteCustomer');
 
 //Cart
 Route::post('/save-cart', 'CartController@saveCart');

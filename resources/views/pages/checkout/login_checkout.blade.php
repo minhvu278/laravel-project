@@ -2,14 +2,14 @@
 @section('content')
     <section id="form"><!--form-->
         <div class="register-req">
-            <p>Vui lòng đăng nhập và đăng ký để thanh toán giỏ hàng và xem lại lịch sử mua hàng</p>
+            <p>Vui lòng đăng nhập hoặc đăng ký để thanh toán giỏ hàng và xem lại lịch sử mua hàng</p>
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-1">
                     <div class="login-form"><!--login form-->
                         <h2>Đăng nhập tài khoản của bạn</h2>
-                        <form action="{{url('/login-customer')}}" method="">
+                        <form action="{{url('/login-customer')}}" method="get">
                             @csrf
                             <input type="email" name="username_account" placeholder="Email" />
                             <input type="password" name="password_account" placeholder="Password" />

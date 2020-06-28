@@ -111,6 +111,7 @@ class AdminController extends Controller
                     ->setBody($html, 'text/html')
                     ->setSubject('Don hang');
             });
+        Session::flush();
         return Redirect::to('/');
     }
 

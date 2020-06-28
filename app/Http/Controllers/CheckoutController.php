@@ -70,12 +70,9 @@ class CheckoutController extends Controller
             ->where('password', $password)
             ->first();
         if ($result) {
-            Session::put('name', $result->name);
             Session::put('id', $result->id);
             return Redirect::to('/checkout');
         } else {
-            Session::put('message', 'Đăng nhập thành công');
-            Session::put('error', 'MK hoặc tài khoản sai, vui lòng nhập lại');
             return Redirect::to('/login-checkout');
         }
     }
