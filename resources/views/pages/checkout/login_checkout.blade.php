@@ -9,10 +9,10 @@
                 <div class="col-sm-4 col-sm-offset-1">
                     <div class="login-form"><!--login form-->
                         <h2>Đăng nhập tài khoản của bạn</h2>
-                        <form action="{{url('/login-customer')}}" method="get">
+                        <form action="{{url('/login-customer')}}" method="post">
                             @csrf
-                            <input type="email" name="username_account" placeholder="Email" />
-                            <input type="password" name="password_account" placeholder="Password" />
+                            <input type="email" name="username" placeholder="Email" />
+                            <input type="password" name="password" placeholder="Password" />
                             <span>
 								<input type="checkbox" class="checkbox">
 								Nhớ tài khoản

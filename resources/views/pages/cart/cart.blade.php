@@ -73,7 +73,15 @@
                     </tbody>
                     <tr>
                         <td><input type="submit" value="Cập nhật giỏ hàng" name="update_qty" class="btn btn-default check_out"></td>
+                        <td>
+                            @if(Session::get('customer'))
+                                <a href="{{url('/checkout')}}" class="btn btn-default check_out">Đặt hàng</a>
+                            @else
+                                <a href="{{url('/login-checkout')}}" class="btn btn-default check_out">Đặt hàng</a>
+                            @endif
+                        </td>
                     </tr>
+
                 </form>
                 </table>
 
@@ -89,7 +97,45 @@
                         <ul>
                             <li>Tổng tiền <span>{{number_format($total,0,',','.').'đ'}}</span></li>
                         </ul>
+                        <ul>
+                            <li>
+                                <form action="{{url('/check-coupon')}}" method="post">
+                                    @csrf
+                                    <input type="text" class="form-control" name="coupon" placeholder="Nhap ma giam gia">
+                                    <input type="submit" class="btn btn-default check-coupon" name="check_coupon" value="Tính mã giảm giá">
+                                </form>
+                            </li>
+                        </ul>
+                        <ul>
+                            @if(Session::get('coupon'))
+                                @foreach(Session::get('coupon') as $cou)
+                                    @if($cou['condition']==1)
+                                        Mã giảm: {{$cou['number']}}%
+                                        <p>
+                                            @php
+                                                $total_coupon = ($total * $cou['number'])/100;
+                                                echo '<p>Tổng giảm:'.number_format($total_coupon,0,',','.').'đ</p>'
+                                            @endphp
+                                        </p>
+                                        <p><li>Tiền sau khi giảm: {{number_format($total-$total_coupon,0,',','.')}}đ</li></p>
+                                    @else
+                                        Mã giảm: {{number_format($cou['number'],0,',','.')}}đ
+                                        <p>
+                                            @php
+                                                $total_coupon = $total - $cou['number'];
+                                            @endphp
+                                        </p>
+                                        <p>
+                                            <li>Tổng đã giảm: {{number_format($total_coupon,0,',','.')}}đ</li>
+                                        </p>
+                                    @endif
+                                @endforeach
+                            @endif
+
+                        </ul>
+
                         <a class="btn btn-default update" href="{{url('/login-checkout')}}">Thanh toán</a>
+
                     </div>
                 </div>
             </div>

@@ -11,5 +11,5 @@ class Wards extends Model
         'name', 'type', 'maqh'
     ];
     protected $primaryKey = 'xaid';
-    protected $table = 'xaphuongthitran';
+    protected $table = 'wards';
 }

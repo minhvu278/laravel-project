@@ -75,14 +75,27 @@ Route::get('/delete-cart/{session_id}', 'CartController@deleteCart');
 //Checkout
 Route::get('/login-checkout', 'CheckoutController@loginCheckout');
 Route::get('/logout-checkout', 'CheckoutController@logoutCheckout');
+Route::get('/delete-fee', 'CheckoutController@deleteFeeCheckout');
 Route::post('/add-customer', 'CheckoutController@addCustomer');
 Route::get('/checkout', 'CheckoutController@checkout');
-Route::get('/login-customer', 'CheckoutController@loginCustomer');
+Route::post('/login-customer', 'CheckoutController@loginCustomer');
 Route::post('/save-checkout-customer', 'CheckoutController@saveCheckoutCustomer');
+Route::post('/api/select-delivery-home', 'CheckoutController@selectDeliveryHomeCheckout');
+Route::post('/api/calculator-fee', 'CheckoutController@calculatorFeeCheckout');
 
 //Mail
 Route::post('/mail', 'AdminController@sendMail');
 
-////Derivery
-//Route::get('/derivery', 'DeriveryController@derivery');
+//Coupon
+Route::post('/check-coupon', 'CouponController@checkCoupon');
+Route::get('/add-coupon', 'CouponController@addCoupon');
+Route::post('/save-coupon', 'CouponController@saveCoupon');
+Route::get('/all-coupon', 'CouponController@allCoupon');
+Route::get('/delete-coupon/{id}', 'CouponController@deleteCoupon');
+
+//Derivery
+Route::get('/delivery', 'DeliveryController@delivery');
+Route::post('/api/select-delivery', 'DeliveryController@selectDelivery');
+Route::post('/api/insert-delivery', 'DeliveryController@insertDelivery');
+Route::post('/api/select-feeship', 'DeliveryController@selectFeeshipDelivery');
 

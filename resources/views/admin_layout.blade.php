@@ -6,6 +6,7 @@
     <title>Trang quản lý dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Ionicons -->
@@ -23,7 +24,8 @@
     <link rel="stylesheet" href="{{asset('backend/plugins/summernote/summernote-bs4.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    <!-- jQuery -->
+    <script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -250,24 +252,48 @@
 
                     </ul>
                 </li>
-{{--                <li class="nav-item has-treeview">--}}
-{{--                    <a href="#" class="nav-link">--}}
-{{--                        <i class="nav-icon fas fa-tachometer-alt"></i>--}}
-{{--                        <p>--}}
-{{--                            Vận chuyển--}}
-{{--                            <i class="right fas fa-angle-left"></i>--}}
-{{--                        </p>--}}
-{{--                    </a>--}}
-{{--                    <ul class="nav nav-treeview">--}}
-{{--                        <li class="nav-item">--}}
-{{--                            <a href="{{url('/delivery')}}" class="nav-link">--}}
-{{--                                <i class="far fa-circle nav-icon"></i>--}}
-{{--                                <p>Quản lý vận chuyển</p>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Mã giảm giá
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{url('/add-coupon')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Quản lý mã giảm giá</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('/all-coupon')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Liệt kê mã giảm giá</p>
+                            </a>
+                        </li>
 
-{{--                    </ul>--}}
-{{--                </li>--}}
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Vận chuyển
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{url('/delivery')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Quản lý vận chuyển</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -319,8 +345,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
+
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -349,7 +374,7 @@
 <script src="{{asset('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('backend/dist/js/adminlte.js')}}"></script>
-@yield('footer_script')
 
+@yield('footer_script')
 </body>
 </html>

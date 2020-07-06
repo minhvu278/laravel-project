@@ -11,5 +11,5 @@ class City extends Model
         'name', 'type'
     ];
     protected $primaryKey = 'matp';
-    protected $table = 'tinhthanhpho';
+    protected $table = 'city';
 }

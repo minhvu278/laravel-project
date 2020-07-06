@@ -11,5 +11,5 @@ class Province extends Model
         'name', 'type', 'matp'
     ];
     protected $primaryKey = 'maqh';
-    protected $table = 'quanhuyen';
+    protected $table = 'province';
 }

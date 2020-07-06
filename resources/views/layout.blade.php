@@ -413,5 +413,56 @@
         })
     })
 </script>
+<script>
+    $(document).ready(function () {
+        $('.choose').on('change', function () {
+            var action = $(this).attr('id');
+            var ma_id = $(this).val();
+            var result = '';
+            if (action === 'city') {
+                result = 'province';
+            } else {
+                result = 'wards';
+            }
+            $.ajax({
+                url: '/api/select-delivery-home',
+                method: 'POST',
+                data: {
+                    action: action,
+                    ma_id: ma_id
+                },
+                success: function (data) {
+                    $('#' + result).html(data);
+                }
+            })
+        })
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        $('.calculate_delivery').click(function (e) {
+            e.preventDefault();
+            var matp = $('.city').val();
+            var maqh = $('.province').val();
+            var xaid = $('.wards').val();
+            if(matp === '' && maqh === '' && xaid === ''){
+                alert('Vui lòng chọn để tính phí vận chuyển')
+            }else{
+                $.ajax({
+                    url: '/api/calculator-fee',
+                    method: 'POST',
+                    data: {
+                        matp: matp,
+                        maqh: maqh,
+                        xaid: xaid,
+                    },
+                    success: function () {
+                        location.reload();
+                    }
+                })
+            }
+        })
+    })
+</script>
 </body>
 </html>
