@@ -12,9 +12,18 @@ use App\City;
 use App\Province;
 use App\Wards;
 use App\Feeship;
+use App\Shipping;
+use App\Order;
+use App\OrderDetails;
 
 class CheckoutController extends Controller
 {
+    public function confirm_order(Request $request){
+        $data = $request->all();
+        $shipping = new Shipping();
+        $shipping->name = $data['name'];
+    }
+
     public function loginCheckout()
     {
         $cate_product = DB::table('category')

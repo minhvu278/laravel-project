@@ -2,7 +2,7 @@
 @section('content')
     <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Thêm thương hiệu sản phẩm</h3>
+            <h3 class="card-title">Chọn khu vận chuyển </h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->

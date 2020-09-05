@@ -8,6 +8,11 @@
                         <div class="card-header">
                             <h3 class="card-title">Liệt kê thành viên</h3>
                         </div>
+                        <div>
+                            <button type="button" class="btn btn-primary"><a
+                                    href="{{URL::to('/add-customer')}}">Thêm</a>
+                            </button>
+                        </div>
 
                     <?php
                     $message = Session::get('message');

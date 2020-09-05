@@ -145,28 +145,10 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a class="nav-link" href="{{url('/all-category')}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Danh mục sản phẩm
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                        Danh mục sản phẩm
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{url('/add-category')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm danh mục</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{url('/all-category')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Liệt kê danh mục</p>
-                            </a>
-                        </li>
-
-                    </ul>
                 </li>
             </ul>
         </nav>
@@ -175,28 +157,10 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a class="nav-link" href="{{url('/all-brand')}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Thương hiệu sản phẩm
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                        Thương hiệu sản phẩm
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{url('/add-brand')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm thương hiệu</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{url('/all-brand')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Liệt kê thương hiệu</p>
-                            </a>
-                        </li>
-
-                    </ul>
                 </li>
             </ul>
         </nav>
@@ -205,28 +169,10 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a class="nav-link" href="{{url('/all-product')}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Sản phẩm
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                        Sản phẩm
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{url('/add-product')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm sản phẩm</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{url('/all-product')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Liệt kê sản phẩm</p>
-                            </a>
-                        </li>
-
-                    </ul>
                 </li>
             </ul>
         </nav>
@@ -235,69 +181,29 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a class="nav-link" href="{{url('/all-customer')}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Quản lý thành viên
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                        Quản lý thành viên
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{url('/all-customer')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách thành viên</p>
-                            </a>
-                        </li>
-
-                    </ul>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Mã giảm giá
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{url('/add-coupon')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Quản lý mã giảm giá</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{url('/all-coupon')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Liệt kê mã giảm giá</p>
-                            </a>
-                        </li>
 
-                    </ul>
+                <li class="nav-item has-treeview">
+                    <a class="nav-link" href="{{url('/all-coupon')}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        Mã giảm giá
+                    </a>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Vận chuyển
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{url('/delivery')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Quản lý vận chuyển</p>
-                            </a>
-                        </li>
 
-                    </ul>
+                <li class="nav-item has-treeview">
+                    <a class="nav-link" href="{{url('/delivery')}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        Vận chuyển
+                    </a>
                 </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
-</div>
+{{--</div>--}}
 <!-- /.sidebar -->
 </aside>
 
