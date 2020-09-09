@@ -118,6 +118,7 @@
                 })
             }
 
+
             $('.add_delivery').click(function () {
                 $.ajax({
                     url: '/api/insert-delivery',

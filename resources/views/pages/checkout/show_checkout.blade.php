@@ -18,15 +18,15 @@
                             <div class="form-one">
                                 <form method="POST">
                                     @csrf
-                                    <input type="text" name="shipping_email" class="shipping_email"
+                                    <input type="text" name="email" class="email"
                                            placeholder="Điền email">
-                                    <input type="text" name="shipping_name" class="shipping_name"
+                                    <input type="text" name="name" class="name"
                                            placeholder="Họ và tên người gửi">
-                                    <input type="text" name="shipping_address" class="shipping_address"
+                                    <input type="text" name="address" class="address"
                                            placeholder="Địa chỉ gửi hàng">
-                                    <input type="text" name="shipping_phone" class="shipping_phone"
+                                    <input type="text" name="phone" class="phone"
                                            placeholder="Số điện thoại">
-                                    <textarea name="shipping_notes" class="shipping_notes"
+                                    <textarea name="notes" class="notes"
                                               placeholder="Ghi chú đơn hàng của bạn" rows="5"></textarea>
 
                                     @if(Session::get('fee'))
@@ -39,7 +39,7 @@
                                     @if(Session::get('coupon'))
                                         @foreach(Session::get('coupon') as $key => $cou)
                                             <input type="hidden" name="order_coupon" class="order_coupon"
-                                                   value="{{$cou['coupon_code']}}">
+                                                   value="{{$cou['code']}}">
                                         @endforeach
                                     @else
                                         <input type="hidden" name="order_coupon" class="order_coupon" value="no">

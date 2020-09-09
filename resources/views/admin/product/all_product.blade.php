@@ -9,7 +9,7 @@
                             <h3 class="card-title">Liệt kê sản phẩm</h3>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary"><a
+                            <button type="button" class="btn btn-success"><a
                                     href="{{URL::to('/add-product')}}">Thêm</a>
                             </button>
                         </div>

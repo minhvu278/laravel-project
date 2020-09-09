@@ -93,7 +93,7 @@ Route::post('/save-coupon', 'CouponController@saveCoupon');
 Route::get('/all-coupon', 'CouponController@allCoupon');
 Route::get('/delete-coupon/{id}', 'CouponController@deleteCoupon');
 
-//Derivery
+//Delivery
 Route::get('/delivery', 'DeliveryController@delivery');
 Route::post('/api/select-delivery', 'DeliveryController@selectDelivery');
 Route::post('/api/insert-delivery', 'DeliveryController@insertDelivery');

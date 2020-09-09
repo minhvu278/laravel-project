@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\City;
 use App\Province;
@@ -84,10 +82,10 @@ class DeliveryController extends Controller
 //                </thead>
 //                <tbody>
 //                ';
-//
+
 //        foreach ($feeship as $fee){
-////            dd($fee->wards);
-//
+// //            dd($fee->wards);
+
 //                $output.='
 //                    <tr>
 //                        <td>'.$fee->city->name.'</td>
